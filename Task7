@@ -1,0 +1,39 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int majorityElement(const vector<int>& nums) 
+{
+    int cand = 0;
+    int count = 0;
+
+    for (int num : nums) 
+    {
+        if (count == 0) 
+        {
+            cand = num;
+        }
+        count += (num == cand) ? 1 : -1;
+    }
+
+    
+    count = 0;
+    for (int num : nums) 
+    {
+        if (num == cand) 
+        {
+            count++;
+        }
+    }
+
+    if (count > nums.size() / 2) 
+    {
+        return cand;
+    }
+
+    else 
+    {
+        return -1;
+    }
+}
