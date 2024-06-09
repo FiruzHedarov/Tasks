@@ -1,0 +1,23 @@
+#include <iostream>
+#include <vector>
+#include <stack>
+using namespace std;
+
+vector<int> dailyTemperatures(vector<int>& temperatures) 
+{
+    stack<int> stack;
+    vector<int> res(temperatures.size(), 0);
+
+    for (int i = 0; i < temperatures.size(); ++i) 
+    {
+        while (!stack.empty() && temperatures[i] > temperatures[stack.top()]) 
+        {
+            int prev_day_index = stack.top();
+            stack.pop();
+            res[prev_day_index] = i - prev_day_index;
+        }
+        stack.push(i);
+    }
+
+    return res;
+}
