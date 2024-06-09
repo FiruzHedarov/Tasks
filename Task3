@@ -1,0 +1,20 @@
+int searchInsert(vector<int>& nums, int target)
+{
+    int leftInd = 0, right = nums.size() - 1;
+
+    while (leftInd <= right) {
+        int middle = leftInd + (right - leftInd) / 2;
+
+        if (nums[middle] == target) {
+            return middle;
+        }
+        else if (nums[middle] < target) {
+            leftInd = middle + 1;
+        }
+        else {
+            right = middle - 1;
+        }
+    }
+
+    return leftInd;
+}
