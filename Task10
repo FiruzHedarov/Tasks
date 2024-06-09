@@ -1,0 +1,33 @@
+#include <iostream>
+#include <vector>
+#include <limits>
+using namespace std;
+
+int thirdMax(const vector<int>& nums) 
+{
+    long first_maximum = LONG_MIN, second_maximum = LONG_MIN, third_maximum = LONG_MIN;
+
+    for (int num : nums) 
+    {
+        if (num == first_maximum || num == second_maximum || num == third_maximum)
+        {
+            continue;
+        }
+
+        if (num > first_maximum)
+        {
+            third_maximum = second_maximum;
+            second_maximum = first_maximum;
+            first_maximum = num;
+        }
+        else if (num > second_maximum) {
+            third_maximum = second_maximum;
+            second_maximum = num;
+        }
+        else if (num > third_maximum) {
+            third_maximum = num;
+        }
+    }
+
+    return (third_maximum == LONG_MIN) ? first_maximum : third_maximum;
+}
